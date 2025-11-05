@@ -1,1 +1,0 @@
-# fikrystudio.github.io
