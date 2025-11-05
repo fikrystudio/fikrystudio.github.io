@@ -1,0 +1,410 @@
+/* --- [ Fikry Studio - Main Stylesheet (Dark Mode) ] --- */
+
+/* 1. FONT IMPORT & GLOBAL VARIABLES */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Saira:wght@400;500;700&display=swap');
+
+:root {
+  /* Colors (Dark Mode Palette) */
+  --color-yellow: #FCD146;
+  --color-coral: #EE6C4D;
+  --color-black: #000000;
+  --color-near-black: #111111; /* Dark gray for cards */
+  --color-gray: #aaa;
+  --color-white: #FFFFFF;
+  --color-dark-border: #333;
+
+  /* Fonts */
+  --font-display: 'Oswald', sans-serif; /* Bold headlines */
+  --font-body: 'Saira', sans-serif;      /* Body text */
+  
+  /* Spacing */
+  --container-width: 1100px;
+  --spacing-medium: 2rem;
+  --spacing-large: 4rem;
+}
+
+/* 2. GLOBAL RESET & BASE STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-black); /* MAIN CHANGE */
+  color: var(--color-white);             /* MAIN CHANGE */
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+h3 { font-size: 1.75rem; }
+
+p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  max-width: 70ch;
+  color: var(--color-gray); /* Softer text color */
+}
+
+/* Links */
+a {
+  color: var(--color-coral);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-yellow); /* Hover effect changed for dark bg */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 3. REUSABLE LAYOUT & COMPONENTS */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: var(--spacing-large) 0;
+}
+
+.section-gray {
+  background-color: var(--color-near-black); /* Changed from light-gray */
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+  padding: 0.75rem 2rem;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  color: var(--color-black);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(252, 209, 70, 0.2); /* Yellow glow */
+}
+
+/* 4. HEADER / NAVIGATION */
+.main-header {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-dark-border); /* Added for separation */
+}
+
+.main-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-white); /* MAIN CHANGE */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logo:hover {
+  color: var(--color-white);
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.main-nav a {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-gray); /* MAIN CHANGE */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 5px;
+  border-bottom: 3px solid transparent;
+  transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: var(--color-white);
+}
+
+.main-nav a.active {
+  color: var(--color-white);
+  border-bottom-color: var(--color-yellow);
+}
+
+/* 5. FOOTER */
+.main-footer {
+  background-color: var(--color-black); /* Already dark */
+  color: var(--color-gray);
+  padding: var(--spacing-medium) 0;
+  text-align: center;
+  border-top: 1px solid var(--color-dark-border);
+}
+
+.main-footer p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.main-footer a {
+  color: var(--color-yellow);
+}
+
+/* 6. HOMEPAGE - HERO */
+.hero {
+  padding: var(--spacing-large) 0;
+  text-align: center;
+}
+
+.hero h1 {
+  margin-bottom: 1rem;
+  color: var(--color-white);
+}
+
+.hero .subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-gray); /* Changed */
+  margin-bottom: 2rem;
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 7. HOMEPAGE - ABOUT */
+.about-me .container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.about-me-image {
+  flex: 1;
+  max-width: 350px;
+}
+
+.about-me-image img {
+  border-radius: 50%;
+  border: 4px solid var(--color-dark-border);
+}
+
+.about-me-text {
+  flex: 2;
+}
+
+.about-me-text h2 {
+  color: var(--color-white);
+}
+
+/* 8. HOMEPAGE - WORK GRID (Case Studies) */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.case-study-card {
+  background-color: var(--color-near-black); /* MAIN CHANGE */
+  border: 1px solid var(--color-dark-border); /* MAIN CHANGE */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.case-study-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.case-study-card a {
+  color: var(--color-white);
+  display: block;
+}
+
+.case-study-card a:hover {
+  color: var(--color-white);
+}
+
+.case-study-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: #222;
+}
+
+.case-study-info {
+  padding: 1.5rem;
+}
+
+.case-study-info h3 {
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+}
+
+.case-study-info p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-gray);
+}
+
+.case-study-info .cta {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-coral);
+  text-transform: uppercase;
+}
+
+/* 9. CASE STUDY PAGE */
+.project-header {
+  padding: var(--spacing-large) 0;
+  background-color: var(--color-near-black); /* Changed to near-black */
+  color: var(--color-white);
+  text-align: center;
+  border-bottom: 1px solid var(--color-dark-border);
+}
+
+.project-header h1 {
+  font-size: 4rem;
+}
+
+.project-header .subtitle {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-gray);
+}
+
+.project-content {
+  padding: var(--spacing-large) 0;
+}
+
+.project-content h2 {
+  color: var(--color-white);
+}
+
+.project-content img {
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border: 1px solid var(--color-dark-border);
+}
+
+.project-gallery {
+  padding: var(--spacing-large) 0;
+}
+
+.project-gallery img {
+  margin-bottom: 2rem;
+}
+
+/* 10. LOGO GALLERY PAGE */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.logo-item {
+  background: var(--color-near-black); /* MAIN CHANGE */
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  border: 1px solid var(--color-dark-border);
+}
+
+.logo-item img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* 11. RESPONSIVE DESIGN (No changes needed) */
+
+/* For Tablets */
+@media (max-width: 900px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; }
+
+  .about-me .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .about-me-image {
+    max-width: 250px;
+  }
+  
+  .logo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* For Phones */
+@media (max-width: 600px) {
+  .main-header .container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .main-nav ul {
+    gap: 1.5rem;
+  }
+  
+  .hero {
+    padding: var(--spacing-medium) 0;
+  }
+  
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  
+  .section {
+    padding: var(--spacing-medium) 0;
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .logo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .project-header h1 {
+    font-size: 3rem;
+  }
+}
