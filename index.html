@@ -25,7 +25,8 @@
       --ink: var(--secondary-accent);
       --muted: #b3b3b3;
       --cta: var(--accent);
-      --cta-ink: var(--secondary-accent); /* White text on accent */
+      /* FIX 3: Set CTA text color to black */
+      --cta-ink: #000000;
       --focus: var(--accent);
       --line: rgba(255, 255, 255, 0.1);
 
@@ -115,10 +116,10 @@
       display:flex; align-items:center; gap:12px;
       flex-shrink: 0;
     }
+    /* FIX 1: Updated .mark styles for the new <img> */
     .brand .mark{
       width:32px; height:32px; flex:0 0 32px;
-      background:linear-gradient(135deg,#fff 0%,#777 100%);
-      border-radius: 50%;
+      /* Removed background and border-radius */
     }
     .brand .name{
       font-weight:700; font-size:16px; letter-spacing:.02em;
@@ -210,7 +211,7 @@
     }
     .h1 .line{ display:block }
     
-    /* NEW CTA Styles */
+    /* FIX 3: Updated CTA Styles */
     .hero .cta,
     .consulting-cta,
     .cta-button {
@@ -218,14 +219,14 @@
       display:inline-block;
       background: var(--cta);
       color: var(--cta-ink);
-      padding: 12px 18px;
+      padding: 14px 22px; /* Increased padding */
       border-radius: var(--radius);
       font-weight: 700;
-      font-size: 13px;
+      font-size: 14px; /* Increased font size */
       letter-spacing: .06em;
       text-transform: uppercase;
       transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
-      font-family: 'Barlow Condensed', sans-serif; /* Ensure CTA font */
+      font-family: 'Barlow Condensed', sans-serif;
     }
     .hero .cta:hover,
     .hero .cta:focus,
@@ -238,10 +239,11 @@
       filter: brightness(1.1);
     }
 
+    /* FIX 2: Hero Art Background */
     .hero-art{
       aspect-ratio: 1 / 1;
-      background: #0e0e0e;
-      border: 1px solid rgba(255,255,255,.06);
+      background: var(--bg); /* Changed from #0e0e0e */
+      border: none; /* Removed border */
       border-radius: var(--radius);
       display:grid; place-items:center;
       padding: 24px;
@@ -344,8 +346,8 @@
       line-height: 1.4;
       margin: 0;
       padding: 0;
-      color: var(--ink); /* Make sure quote is bright */
-      font-family: 'Saira', sans-serif; /* Body font for quotes */
+      color: var(--ink);
+      font-family: 'Saira', sans-serif;
     }
     .testimonial-card figcaption {
       display: flex;
@@ -399,8 +401,8 @@
       color: var(--muted);
       max-width: 700px;
       margin: 16px 0 0 0;
-      font-family: 'Saira', sans-serif; /* Body font for subtitles */
-      text-transform: none; /* Override title style */
+      font-family: 'Saira', sans-serif;
+      text-transform: none;
     }
     
     .logo-grid {
@@ -480,7 +482,7 @@
       appearance:none; background:#0e0e0e; border:1px solid rgba(255,255,255,.15);
       border-radius: var(--radius); padding:12px 12px; color:var(--ink);
       font-size:14px;
-      font-family: 'Saira', sans-serif; /* Body font for inputs */
+      font-family: 'Saira', sans-serif;
       transition: border-color 0.2s ease;
       width: 100%;
     }
@@ -529,12 +531,14 @@
       min-height: 120px;
       resize: vertical;
     }
+    /* FIX 3: Updated CTA Styles */
     .btn-submit {
       background:var(--cta); color:var(--cta-ink); border:none; border-radius: var(--radius);
-      font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:12px;
+      font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+      font-size: 14px; /* Increased font size */
+      padding: 14px 24px; /* Increased padding */
       cursor: pointer;
       transition: filter .2s ease;
-      padding: 12px 24px;
       justify-self: start;
       font-family: 'Barlow Condensed', sans-serif;
     }
@@ -659,7 +663,7 @@
     <div class="container header-flex">
       <div class="brand-left">
         <a class="brand" href="#home">
-          <span aria-hidden="true" class="mark"></span>
+          <img src="favicon.svg" alt="Fikry Studio Logo" class="mark" />
           <span class="name">Fikry Studio</span>
         </a>
       </div>
@@ -750,7 +754,7 @@
     <section id="logos" class="page-header" style="border-bottom: 0; padding-bottom: 60px;">
       <div class="container">
         <h1>Logos I've designed over the years</h1>
-        </div>
+      </div>
     </section>
     <section style="padding-top: 0;">
       <div class="container">
