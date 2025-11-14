@@ -1,208 +1,1091 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Fikry Studio — Strategic Brand Designer</title>
+  
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-  <title>Fikry Studio — Strategic Brand Design</title>
-  <meta name="description" content="Strategy-led visual identities by Youssef Fikry. Case studies, logo design, and consulting.">
-  <link rel="canonical" href="https://fikrystudio.github.io/">
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Saira:wght@400&display=swap" rel="stylesheet">
 
-  <meta property="og:title" content="Fikry Studio — Strategic Brand Design">
-  <meta property="og:description" content="Strategy-led visual identities by Youssef Fikry.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fikrystudio.github.io/">
-  <meta property="og:image" content="https://placehold.co/1200x630/png?text=Fikry+Studio">
+  <style>
+    :root{
+      /* NEW Colors */
+      --primary: #FCD146;
+      --secondary: #000000;
+      --accent: #EE6C4D;
+      --secondary-accent: #FFFFFF;
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Saira:wght@300;400;600&display=swap" rel="stylesheet">
+      /* Mapped to new colors */
+      --bg: var(--secondary);
+      --panel: #111; /* Kept this dark panel for sections */
+      --ink: var(--secondary-accent);
+      --muted: #b3b3b3;
+      --cta: var(--accent);
+      --cta-ink: var(--secondary-accent); /* White text on accent */
+      --focus: var(--accent);
+      --line: rgba(255, 255, 255, 0.1);
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><circle cx=%2232%22 cy=%2232%22 r=%2230%22 fill=%22%23FCD146%22/></svg>">
-  <link rel="stylesheet" href="style.css">
+      /* Layout */
+      --maxw: 1200px;
+      --edge: 24px;
+      --gutter: 24px;
+      --radius: 6px;
+
+      /* Typography */
+      --h1: clamp(36px, 6vw, 84px);
+      --h2: clamp(26px, 4.2vw, 44px);
+      --h3: clamp(18px, 2vw, 22px);
+      --body: clamp(14px, 1.2vw, 17px);
+      --small: 12px;
+
+      --nav-h: 72px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --overlay: rgba(0,0,0,.55);
+    }
+
+    * { box-sizing: border-box }
+    html,body { height: 100% }
+    
+    /* NEW Base Font */
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--bg);
+      font: 400 var(--body)/1.55 'Saira', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: .01em;
+    }
+    html { scroll-behavior: smooth; }
+
+    a{ color:inherit; text-decoration:none }
+    img, svg{ display:block; max-width:100%; height:auto }
+    .container{
+      width:100%;
+      max-width: var(--maxw);
+      margin-inline:auto;
+      padding-inline: var(--edge);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    .form input:focus-visible,
+    .contact-form input:focus-visible,
+    .contact-form select:focus-visible,
+    .contact-form textarea:focus-visible {
+      outline-offset: 1px;
+      border-color: var(--focus);
+    }
+    
+    /* NEW Title Styles */
+    h1, h2, h3, .h1, .h2, .h3, .eyebrow, .section-header h2, .page-header h1, .brand .name, .footer-brand, .cta-button, .hero .cta, .consulting-cta {
+      font-family: 'Barlow Condensed', sans-serif;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    /* Fixed nav */
+    .nav{
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: var(--nav-h);
+      z-index: 50;
+      display:flex;
+      align-items:center;
+      backdrop-filter: blur(6px);
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .header-flex{ 
+      width: 100%;
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between; 
+      gap:16px; 
+    }
+    .brand-left{ display:flex; align-items:center; }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      flex-shrink: 0;
+    }
+    .brand .mark{
+      width:32px; height:32px; flex:0 0 32px;
+      background:linear-gradient(135deg,#fff 0%,#777 100%);
+      border-radius: 50%;
+    }
+    .brand .name{
+      font-weight:700; font-size:16px; letter-spacing:.02em;
+    }
+    .navlinks{ 
+      margin-left:auto; 
+      display:flex; 
+      gap:24px; 
+      align-items:center; 
+    }
+    .navlinks a{
+      font-size:14px; color:var(--muted);
+      padding:8px 4px; position:relative;
+      transition: color .2s ease;
+      font-family: 'Barlow Condensed', sans-serif; /* Use title font for nav */
+      text-transform: uppercase;
+    }
+    .navlinks a:hover,
+    .navlinks a:focus{ color:var(--ink); outline: none; }
+    
+    .navlinks a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -10px; height: 2px;
+      background: var(--ink);
+      transform: scaleX(0);
+      transition: transform 0.2s ease-in-out;
+    }
+    .navlinks a.active::after,
+    .navlinks a:hover::after,
+    .navlinks a:focus::after {
+      transform: scaleX(1);
+    }
+
+    /* Mobile Nav Toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      padding: 4px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .nav-toggle .icon-bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--ink);
+      border-radius: 1px;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .nav-toggle .icon-bar + .icon-bar {
+      margin-top: 5px;
+    }
+    
+    .nav-open .nav-toggle .icon-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav-open .nav-toggle .icon-bar:nth-child(2) {
+      opacity: 0;
+      transform: scale(0);
+    }
+    .nav-open .nav-toggle .icon-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Sections */
+    main { padding-top: calc(var(--nav-h) + 32px) }
+    section{ 
+      padding-block: clamp(40px, 7vw, 100px);
+      scroll-margin-top: var(--nav-h); 
+    }
+    
+    .hero-padding {
+      padding-top: clamp(56px, 8vw, 120px) !important;
+      padding-bottom: clamp(40px, 7vw, 90px) !important;
+    }
+
+    .grid-hero{
+      display:grid; gap: var(--gutter);
+      grid-template-columns: 1.4fr .6fr;
+      align-items: start;
+    }
+    .h1{
+      font-weight: 900;
+      font-size: var(--h1);
+      line-height: .95;
+      letter-spacing: -0.015em;
+    }
+    .h1 .line{ display:block }
+    
+    /* NEW CTA Styles */
+    .hero .cta,
+    .consulting-cta,
+    .cta-button {
+      margin-top: clamp(20px, 4vw, 28px);
+      display:inline-block;
+      background: var(--cta);
+      color: var(--cta-ink);
+      padding: 12px 18px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+      font-family: 'Barlow Condensed', sans-serif; /* Ensure CTA font */
+    }
+    .hero .cta:hover,
+    .hero .cta:focus,
+    .consulting-cta:hover,
+    .consulting-cta:focus,
+    .cta-button:hover,
+    .cta-button:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.4);
+      filter: brightness(1.1);
+    }
+
+    .hero-art{
+      aspect-ratio: 1 / 1;
+      background: #0e0e0e;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      display:grid; place-items:center;
+      padding: 24px;
+    }
+    .hero-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Work tiles */
+    .workgrid{
+      display:grid; gap: var(--gutter);
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .tile{
+      position:relative;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius);
+      overflow:hidden;
+      background: #111;
+      border:1px solid rgba(255,255,255,.06);
+      display: block;
+    }
+    .tile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+    .tile .hover{
+      position:absolute; inset:0;
+      background: var(--overlay);
+      opacity:0; transition: opacity .2s ease;
+      display:grid; place-items:center;
+      font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:12px;
+      color: var(--ink);
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .tile:hover .hover,
+    .tile:focus .hover,
+    .tile:focus-within .hover { 
+      opacity:1; 
+    }
+    .tile:hover .tile-img,
+    .tile:focus .tile-img {
+      transform: scale(1.05);
+    }
+    .tile:focus { outline: none; }
+
+
+    /* Bio */
+    .grid-bio{
+      display:grid; gap: var(--gutter);
+      grid-template-columns: 1fr 1.05fr;
+      align-items:start;
+    }
+    .eyebrow{
+      font-size: var(--h3);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 900;
+    }
+    .bio .copy,
+    .consulting-copy {
+      color: var(--muted);
+      max-width: 600px;
+      margin-top: 18px;
+      line-height: 1.6;
+    }
+    
+    .portrait-img{
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.06);
+      background: #111;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background: var(--panel);
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gutter);
+    }
+    .testimonial-card {
+      background: transparent;
+      margin: 0;
+    }
+    .testimonial-card blockquote {
+      font-size: var(--h3);
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0;
+      padding: 0;
+      color: var(--ink); /* Make sure quote is bright */
+      font-family: 'Saira', sans-serif; /* Body font for quotes */
+    }
+    .testimonial-card figcaption {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .testimonial-card .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #333;
+      object-fit: cover;
+    }
+    .testimonial-card .client-title {
+      display: block;
+      color: #888;
+      font-size: 13px;
+    }
+    /* Section header */
+    .section-header {
+      max-width: 700px;
+      margin-bottom: clamp(24px, 4vw, 48px);
+    }
+    .section-header .eyebrow {
+      font-size: var(--small);
+      color: var(--muted);
+      letter-spacing: .1em;
+    }
+    .section-header h2 {
+      font-size: var(--h2);
+      font-weight: 900;
+      margin: 8px 0 0 0;
+    }
+
+    /* Page Headers (for Logos, Consulting, Contact) */
+    .page-header {
+      padding-bottom: clamp(40px, 5vw, 60px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .page-header h1 {
+      font-size: var(--h1);
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: -0.015em;
+    }
+    .page-header p.subtitle {
+      font-size: var(--h3);
+      color: var(--muted);
+      max-width: 700px;
+      margin: 16px 0 0 0;
+      font-family: 'Saira', sans-serif; /* Body font for subtitles */
+      text-transform: none; /* Override title style */
+    }
+    
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gutter);
+    }
+    .logo-card {
+      aspect-ratio: 1/1;
+      display: grid;
+      place-items: center;
+      background: var(--panel);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.06);
+      padding: 20px;
+    }
+    .logo-card img {
+      width: 80%;
+    }
+    
+    /* Consulting Info Box */
+    .info-box {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .info-box h4 {
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 12px 0;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .info-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 15px;
+    }
+    .info-box li {
+      margin-bottom: 12px;
+    }
+    
+    /* --- Contact Form Styles --- */
+    .contact-form {
+      max-width: 700px;
+      display: grid;
+      gap: 16px;
+    }
+    .form-group {
+      display: grid;
+      gap: 8px;
+    }
+    .form-group label {
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted);
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .form-group.grid-2 {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    
+    /* Base styles for form inputs */
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+      appearance:none; background:#0e0e0e; border:1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius); padding:12px 12px; color:var(--ink);
+      font-size:14px;
+      font-family: 'Saira', sans-serif; /* Body font for inputs */
+      transition: border-color 0.2s ease;
+      width: 100%;
+    }
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+      background-position: right 0.7rem center;
+      background-repeat: no-repeat;
+      background-size: 1.25em;
+    }
+    
+    .contact-options {
+      display: none;
+      gap: 16px;
+      animation: fadeIn 0.3s ease;
+    }
+    .contact-options.active {
+      display: grid;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .consulting-rate {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .consulting-rate p {
+      margin: 0;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .consulting-rate span {
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .btn-submit {
+      background:var(--cta); color:var(--cta-ink); border:none; border-radius: var(--radius);
+      font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:12px;
+      cursor: pointer;
+      transition: filter .2s ease;
+      padding: 12px 24px;
+      justify-self: start;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .btn-submit:hover,
+    .btn-submit:focus {
+      filter: brightness(1.1);
+    }
+    .form-message {
+      color: var(--cta);
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity .3s ease;
+      margin-top: 10px;
+      min-height: 1.5em;
+    }
+
+    /* Centered footer */
+    footer { 
+      background: transparent; 
+      border-top:1px solid var(--line); 
+      padding-block: clamp(24px,6vw,48px); 
+    }
+    .footer-centered { 
+      display:flex; 
+      flex-direction:column; 
+      align-items:center; 
+      gap:12px; 
+      text-align:center; 
+    }
+    .footer-centered .footer-brand { 
+      font-weight:800; 
+      font-size:18px; 
+      color:var(--primary); 
+    }
+    .footer-centered .footer-socials { 
+      display:flex; 
+      gap:12px; 
+    }
+    .footer-centered .footer-socials a {
+      text-decoration:none; 
+      color:var(--muted); 
+      padding:8px 12px; 
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.04);
+      transition: color .2s ease, border-color .2s ease;
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+    }
+    .footer-centered .footer-socials a:hover,
+    .footer-centered .footer-socials a:focus { 
+      color:var(--ink); 
+      border-color:rgba(255,255,255,0.12); 
+    }
+    .footer-centered .footer-copy { 
+      color:var(--muted); 
+      font-size:13px; 
+      margin-top:6px; 
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px){
+      .grid-hero{ grid-template-columns: 1fr; }
+      .hero-art{ aspect-ratio: 2 / 1; }
+    }
+    @media (max-width: 900px){
+      .workgrid{ grid-template-columns: repeat(2, 1fr) }
+      .grid-bio{ grid-template-columns: 1fr; gap: 32px; }
+      .testimonial-grid { grid-template-columns: 1fr; gap: 32px; }
+      .logo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    
+    @media (max-width: 768px){
+      .nav-toggle {
+        display: block;
+      }
+      .navlinks{
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-100%);
+        transition: all .3s ease;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        z-index: 1000;
+        padding-top: var(--nav-h);
+      }
+      .navlinks a {
+        font-size: var(--h3);
+        color: var(--ink);
+      }
+      .navlinks a.active::after,
+      .navlinks a:hover::after,
+      .navlinks a:focus::after {
+        bottom: -6px;
+      }
+      .nav-open .navlinks {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      body.nav-open {
+        overflow: hidden;
+      }
+      .form-group.grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      :root{ --edge: 16px; --gutter: 16px; --nav-h: 64px }
+      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
-<body class="dark">
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header role="banner" class="appbar">
-    <nav aria-label="Primary" class="container">
-      <a href="#home" class="brand">Fikry Studio</a>
-      <ul class="nav" id="nav">
-        <li><a href="#work">Case Studies</a></li>
-        <li><a href="logos.html">Logos</a></li>
-        <li><a href="#niches">Focus</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+<body>
+  <header class="nav" id="header">
+    <div class="container header-flex">
+      <div class="brand-left">
+        <a class="brand" href="#home">
+          <span aria-hidden="true" class="mark"></span>
+          <span class="name">Fikry Studio</span>
+        </a>
+      </div>
+      <nav aria-label="Primary" class="navlinks" id="navlinks">
+        <a class="nav-work" href="#work">Work</a>
+        <a class="nav-about" href="#about">About</a>
+        <a class="nav-logos" href="#logos">Logos</a>
+        <a class="nav-consulting" href="#consulting">Consulting</a>
+        <a class="nav-contact" href="#contact">Contact</a>
+      </nav>
+      <button aria-controls="navlinks" aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle">
+        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+      </button>
+    </div>
   </header>
 
-  <main id="main" tabindex="-1">
-    <!-- Hero -->
-    <section id="home" class="hero container" aria-labelledby="hero-title">
-      <h1 id="hero-title" class="display accent-underline">Strategy Maketh Identity.</h1>
-      <p class="sub">I’m Youssef Fikry, a brand designer crafting strategy-led visual identities.</p>
-      <div class="cta">
-        <a href="#work" class="btn btn-primary">See Case Studies</a>
-        <a href="#contact" class="btn btn-secondary">Let’s Talk</a>
+  <main>
+    
+    <section class="hero hero-padding" id="home">
+      <div class="container grid-hero">
+        <div>
+          <h1 class="h1">
+            <span class="line">Strategy Maketh Identity</span>
+          </h1>
+          <a class="cta" href="#contact">Work with me</a>
+        </div>
+        <div aria-hidden="true" class="hero-art">
+          <img src="hero-art.svg" alt="Fikry Studio Hero Graphic" />
+        </div>
       </div>
     </section>
 
-    <!-- Niches -->
-    <section id="niches" class="section container" aria-labelledby="niches-title">
-      <h2 id="niches-title" class="h2-accent">Focus</h2>
-      <div class="grid">
-        <article class="card card-raised">
-          <h3>Strategic Brands & Case Studies</h3>
-          <p>Identity systems backed by research, positioning, and rollout.</p>
-          <a class="inline-cta" href="#work">View case studies →</a>
-        </article>
-        <article class="card card-raised">
-          <h3>Logo Design</h3>
-          <p>Marks and wordmarks built on strategy and form discipline.</p>
-          <a class="inline-cta" href="logos.html">Explore 50 logos →</a>
-        </article>
-        <article class="card card-raised">
-          <h3>Consulting for Businesses</h3>
-          <p>Brand audits, naming guidance, and design systems coaching.</p>
-          <a class="inline-cta" href="#contact">Book a consult →</a>
-        </article>
+    <section id="work">
+      <div class="container">
+        <div class="section-header">
+          <h2>Selected Work</h2>
+        </div>
+        <div aria-label="Selected work" class="workgrid">
+          <a class="tile" href="project-1.html">
+            <img alt="Preview of Project 1" class="tile-img" loading="lazy" src="project-1.png"/>
+            <div class="hover">Project 1</div>
+          </a>
+          <a class="tile" href="project-2.html">
+            <img alt="Preview of Project 2" class="tile-img" loading="lazy" src="https://placehold.co/600x600/2a2a2a/555?text=Project+2"/>
+            <div class="hover">Project 2</div>
+          </a>
+          <a class="tile" href="project-3.html">
+            <img alt="Preview of Project 3" class="tile-img" loading="lazy" src="https://placehold.co/600x600/222/555?text=Project+3"/>
+            <div class="hover">Project 3</div>
+          </a>
+          <a class="tile" href="project-4.html">
+            <img alt="Preview of Project 4" class="tile-img" loading="lazy" src="https://placehold.co/600x600/2a2a2a/555?text=Project+4"/>
+            <div class="hover">Project 4</div>
+          </a>
+          <a class="tile" href="project-5.html">
+            <img alt="Preview of Project 5" class="tile-img" loading="lazy" src="https://placehold.co/600x600/222/555?text=Project+5"/>
+            <div class="hover">Project 5</div>
+          </a>
+          <a class="tile" href="project-6.html">
+            <img alt="Preview of Project 6" class="tile-img" loading="lazy" src="https://placehold.co/600x600/2a2a2a/555?text=Project+6"/>
+            <div class="hover">Project 6</div>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Work / Case Studies -->
-    <section id="work" class="section container" aria-labelledby="work-title">
-      <h2 id="work-title" class="h2-accent">Selected Case Studies</h2>
-      <div class="grid">
-        <article class="card">
-          <a class="card-link" href="cases/bold-retail-rebrand.html">
-            <img src="https://images.unsplash.com/photo-1515419682769-91a8a6bdaf88?w=1200&q=70&auto=format&fit=crop" alt="Brand system presentation mockup" width="800" height="600" loading="lazy">
-            <h3>Bold Retail Rebrand</h3>
-            <p>Positioning and identity system for a consumer brand.</p>
-            <span class="pill pill-primary">Case Study</span>
-          </a>
-        </article>
-        <article class="card">
-          <a class="card-link" href="cases/type-first-campaign.html">
-            <img src="https://images.unsplash.com/photo-1512295767273-ac109ac3acfa?w=1200&q=70&auto=format&fit=crop" alt="Typography-focused poster set" width="800" height="600" loading="lazy">
-            <h3>Type-first Campaign</h3>
-            <p>Grid and typography drive a clear narrative.</p>
-            <span class="pill pill-secondary">Campaign</span>
-          </a>
-        </article>
-        <article class="card">
-          <a class="card-link" href="cases/packaging-system.html">
-            <img src="https://images.unsplash.com/photo-1512288094930-3632f47a0840?w=1200&q=70&auto=format&fit=crop" alt="Packaging and label system" width="800" height="600" loading="lazy">
-            <h3>Packaging System</h3>
-            <p>Modular packaging rules for scale and consistency.</p>
-            <span class="pill pill-primary">System</span>
-          </a>
-        </article>
+    <section class="bio" id="about">
+      <div class="container grid-bio">
+        <div>
+          <h2 class="h2" style="font-size: var(--h2); font-weight: 800; margin: 10px 0;">Crash OR crown</h2>
+          <p class="copy">
+            I'm Youssef Fikry, a brand identity designer and textile engineering researcher based in Egypt. My journey has always been driven by a simple feeling: a responsibility to make a real difference. Whether I'm in a design studio or a research lab, that purpose remains the same.
+          </p>
+          <p class="copy">
+            I believe a strong brand should do more than look good; it should work. It should provide clarity, structure, and confidence for a business to show up as its true self.
+          </p>
+          <p class="copy">
+            That’s why my design process is shaped by the same principles that drive my academic work: deep learning, smart questions, and a methodical approach to finding the truth. I don't guess; I study your market, your audience, and your competitors to uncover what makes you different. I then use this blend of strategic design and academic rigor to help you build an identity with purpose, ensuring the final result is not just visual, but meaningful and built to scale.
+          </p>
+          
+          <a class="cta-button" href="#contact">Work with me</a>
+
+        </div>
+        <img alt="A portrait of Youssef Fikry" class="portrait-img" loading="lazy" src="portrait.png"/>
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="section container" aria-labelledby="about-title">
-      <h2 id="about-title" class="h2-accent">About</h2>
-
-      <p class="sub read" style="margin-bottom:1.5rem;">
-        <strong>Strategy Maketh Identity.</strong> At the heart of every iconic brand lies a foundation built on strategy, not serendipity. I go beyond surface-level visuals to craft identities that solve real business challenges. Whether it's repositioning a startup or revitalizing a legacy brand, my work fuses strategic insight with purposeful design to create identities that drive growth and endure.
-      </p>
-
-      <h3>Our Approach</h3>
-      <p class="read">
-        We don’t just design logos or palettes—we engineer brand ecosystems. Through research and strategic analysis, we uncover the core truths of your business. Strategy guides every choice, ensuring your brand doesn’t just look good—it performs.
-      </p>
-
-      <h3>Why Strategic Branding Matters</h3>
-      <p class="read">
-        Visuals alone fade into the noise. True brand power comes from strategic alignment. We create identities that clarify your message, strengthen trust, and deliver measurable outcomes. Every element works harder, smarter, and more effectively.
-      </p>
-
-      <h3>Services Overview</h3>
-      <p class="read">
-        • Brand Audits & Positioning<br>
-        • Complete Identity Systems<br>
-        • Messaging & Narrative Design<br>
-        • Brand Consulting for Business Growth
-      </p>
+    <section id="logos" class="page-header" style="border-bottom: 0; padding-bottom: 60px;">
+      <div class="container">
+        <h1>Logos I've designed over the years</h1>
+        </div>
+    </section>
+    <section style="padding-top: 0;">
+      <div class="container">
+        <div class="logo-grid">
+          <div class="logo-card"><img alt="Logo 1" src="https://placehold.co/400x400/111/444?text=LOGO+1"/></div>
+          <div class="logo-card"><img alt="Logo 2" src="https://placehold.co/400x400/111/444?text=LOGO+2"/></div>
+          <div class="logo-card"><img alt="Logo 3" src="https://placehold.co/400x400/111/444?text=LOGO+3"/></div>
+          <div class="logo-card"><img alt="Logo 4" src="https://placehold.co/400x400/111/444?text=LOGO+4"/></div>
+          <div class="logo-card"><img alt="Logo 5" src="https://placehold.co/400x400/111/444?text=LOGO+5"/></div>
+          <div class="logo-card"><img alt="Logo 6" src="https://placehold.co/400x400/111/444?text=LOGO+6"/></div>
+          <div class="logo-card"><img alt="Logo 7" src="https://placehold.co/400x400/111/444?text=LOGO+7"/></div>
+          <div class="logo-card"><img alt="Logo 8" src="https://placehold.co/400x400/111/444?text=LOGO+8"/></div>
+        </div>
+      </div>
     </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials" class="section container" aria-labelledby="test-title">
-      <h2 id="test-title" class="h2-accent">Testimonials</h2>
-      <figure class="quote">
-        <blockquote>“Outcome-focused, precise, and reliable.”</blockquote>
-        <figcaption>Client Name — Role, Company</figcaption>
-      </figure>
-      <figure class="quote">
-        <blockquote>“A clean process that connects strategy to craft.”</blockquote>
-        <figcaption>Client Name — Role, Company</figcaption>
-      </figure>
+    <section id="consulting" class="page-header" style="border-bottom: 0; padding-bottom: 0; background: var(--panel);">
+      <div class="container">
+        <h1>1:1 Consulting</h1>
+        <p class="subtitle">Get expert, actionable advice on your brand, portfolio, or design career.</p>
+      </div>
+    </section>
+    <section style="background: var(--panel);">
+      <div class="container grid-bio">
+        <div>
+          <div class="eyebrow">Direct Access</div>
+          <h2 class="h2" style="font-size: var(--h2); font-weight: 800; margin: 10px 0;">Stuck? Let’s talk.</h2>
+          <p class="consulting-copy">You don’t always need a full project. Sometimes you need a sharp second opinion.</p>
+          <p class="consulting-copy">We can cover strategy, portfolio reviews, pricing, positioning, or client management.</p>
+          <a class="consulting-cta" href="#contact">Book a session</a>
+        </div>
+        <aside class="info-box">
+          <h4>How it works</h4>
+          <ul>
+            <li><strong>Step 1:</strong> Book via the form.</li>
+            <li><strong>Step 2:</strong> Calendar link + short questionnaire.</li>
+            <li><strong>Step 3:</strong> Focused video session.</li>
+            <li><strong>Step 4:</strong> Follow-up notes and next steps.</li>
+          </ul>
+          <h4 style="margin-top: 24px;">Rate</h4>
+          <p style="font-size: var(--h3); font-weight: 700; margin: 0; color: var(--ink);"><strong>$15 USD / hour</strong></p>
+        </aside>
+      </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section container" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="h2-accent">Contact</h2>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" aria-describedby="form-status" class="form">
-        <label>
-          <span>Name</span>
-          <input name="name" type="text" required autocomplete="name">
-        </label>
-        <label>
-          <span>Email</span>
-          <input name="_replyto" type="email" required autocomplete="email" inputmode="email">
-        </label>
-        <label>
-          <span>Message</span>
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-        <!-- Honeypot -->
-        <input type="text" name="company" tabindex="-1" autocomplete="off" class="hp">
-        <!-- Subject + passive routing -->
-        <input type="hidden" name="_subject" value="New message from fikrystudio.github.io">
-        <input type="hidden" name="_to" value="contact.fikrystudio@gmail.com">
-        <button type="submit" class="btn btn-primary">Send</button>
-        <p id="form-status" role="status" aria-live="polite"></p>
-      </form>
-      <p class="muted">Prefer email? <a href="mailto:contact.fikrystudio@gmail.com">contact.fikrystudio@gmail.com</a></p>
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <div class="eyebrow">Social Proof</div>
+          <h2>Don't take my word for it.</h2>
+        </div>
+        <div class="testimonial-grid">
+          <figure class="testimonial-card">
+            <blockquote>
+              "Working with [Your Name] was a game-changer. Our new brand feels 'us' in a way we couldn't articulate."
+            </blockquote>
+            <figcaption>
+              <img alt="Avatar for Jane Doe" class="avatar" loading="lazy"src="https://placehold.co/100x100/333/888?text=AV"/>
+              <div>
+                <strong>Jane Doe</strong>
+                <span class="client-title">CEO, Client Co</span>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <blockquote>
+              "The process was as brilliant as the final result. Incredibly professional, insightful, and *fast*."
+            </blockquote>
+            <figcaption>
+              <img alt="Avatar for John Smith" class="avatar" loading="lazy" src="https://placehold.co/100x100/333/888?text=AV"/>
+              <div>
+                <strong>John Smith</strong>
+                <span class="client-title">Founder, Startup</span>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="testimonial-card">
+            <blockquote>
+              "I didn't just get a logo. I got a strategic partner who helped clarify my entire business model."
+            </blockquote>
+            <figcaption>
+              <img alt="Avatar for Alex Johnson" class="avatar" loading="lazy" src="https://placehold.co/100x100/333/888?text=AV"/>
+              <div>
+                <strong>Alex Johnson</strong>
+                <span class="client-title">Director, Tech Co</span>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="page-header">
+      <div class="container">
+        <h1>Let’s work together</h1>
+        <p class="subtitle">Fill out the form. I’ll reply within two business days.</p>
+      </div>
+    </section>
+    <section style="padding-top:0">
+      <div class="container">
+        <form class="contact-form" id="main-contact-form">
+          <div class="form-group grid-2">
+            <div class="form-group">
+              <label for="contact-name">Your Name</label>
+              <input id="contact-name" name="name" required="" type="text"/>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Your Email</label>
+              <input id="contact-email" name="email" required="" type="email"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service-type">What service are you interested in?</label>
+            <select id="service-type" name="service" required="">
+              <option value="">Select a service…</option>
+              <option value="brand">Strategic Brand</option>
+              <option value="logo">Logo Design</option>
+              <option value="consulting">Consulting ($15/hr)</option>
+            </select>
+          </div>
+          <div class="contact-options form-group grid-2" id="contact-options-brand">
+            <div class="form-group">
+              <label for="brand-budget">Budget (USD)</label>
+              <select id="brand-budget" name="brand-budget">
+                <option value="">Select budget…</option>
+                <option value="600-1000">$600–$1,000</option>
+                <option value="1000-2000">$1,000–$2,000</option>
+                <option value="2000+">$2,000+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="brand-duration">Timeline</label>
+              <select id="brand-duration" name="brand-duration">
+                <option value="">Select duration…</option>
+                <option value="<1m">&lt; 1 month</option>
+                <option value="1-3m">1–3 months</option>
+                <option value="3m+">3+ months</option>
+              </select>
+            </div>
+          </div>
+          <div class="contact-options form-group grid-2" id="contact-options-logo">
+            <div class="form-group">
+              <label for="logo-budget">Your Budget (USD)</label>
+              <input id="logo-budget" name="logo-budget" placeholder="e.g., 500" type="number"/>
+            </div>
+            <div class="form-group">
+              <label for="logo-duration">Timeline</label>
+              <select id="logo-duration" name="logo-duration">
+                <option value="">Select duration…</option>
+                <option value="2w">2 weeks</option>
+                <option value="1m">1 month</option>
+                <option value="1m+">More than 1 month</option>
+              </select>
+            </div>
+          </div>
+          <div class="contact-options" id="contact-options-consulting">
+            <div class="consulting-rate">
+              <p>$15 USD / hour <span>(Pay-as-you-go, billed after the session)</span></p>
+            </div>
+            <div class="form-group">
+              <label for="consulting-hours">Estimated Hours Needed</label>
+              <input id="consulting-hours" min="1" name="consulting-hours" placeholder="e.g., 2" type="number"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-details">Project Details</label>
+            <textarea id="contact-details" name="details" placeholder="Tell me about your project, company, and goals…" required=""></textarea>
+          </div>
+          <div class="form-group">
+            <button class="btn-submit" type="submit">Send Inquiry</button>
+            <div aria-live="polite" class="form-message" id="contact-form-message" role="status"></div>
+          </div>
+        </form>
+      </div>
     </section>
   </main>
 
-  <footer role="contentinfo" class="footer">
-    <nav aria-label="Social" class="container">
-      <ul class="social">
-        <li><a href="https://www.linkedin.com/in/youssefikry">LinkedIn</a></li>
-        <li><a href="https://www.behance.net/youssefikry">Behance</a></li>
-        <li><a href="https://dribbble.com/youssefikry">Dribbble</a></li>
-        <li><a href="https://www.instagram.com/youssefikry">Instagram</a></li>
-        <li><a href="mailto:contact.fikrystudio@gmail.com">Email</a></li>
-      </ul>
-      <div class="footline">
-        <small>© <span id="year"></span> Fikry Studio</small>
-        <a class="top" href="#home">Back to top</a>
+  <footer>
+    <div class="container footer-centered">
+      <div class="footer-brand">Fikry Studio</div>
+      <div class="footer-socials">
+        <a aria-label="Facebook" href="https://www.facebook.com/Youssefikry/" rel="noopener" target="_blank">Facebook</a>
+        <a aria-label="LinkedIn" href="https://www.linkedin.com/in/youssefikry" rel="noopener" target="_blank">LinkedIn</a>
+        <a aria-label="Behance" href="https://www.behance.net/youssefikry/projects" rel="noopener" target="_blank">Behance</a>
       </div>
-    </nav>
+      <div class="footer-copy">Copyright Fikry Studio. All Rights Reserved <span id="y">2025</span></div>
+    </div>
   </footer>
 
   <script>
-    // Active nav link by section
-    const sections = document.querySelectorAll('main section[id]');
-    const navLinks = document.querySelectorAll('#nav a[href^="#"]');
-    const byId = id => document.querySelector('#nav a[href="#'+id+'"]');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(e.isIntersecting){
-          navLinks.forEach(a=>a.classList.remove('active'));
-          const link = byId(e.target.id);
-          if(link) link.classList.add('active');
-        }
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --- Update year in footer ---
+      const yearEl = document.getElementById('y');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      // --- Mobile Nav Toggle ---
+      const navToggle = document.querySelector('.nav-toggle');
+      const bodyEl = document.body;
+      const navlinksEl = document.getElementById('navlinks');
+      
+      if (navToggle) {
+        navToggle.addEventListener('click', () => {
+          bodyEl.classList.toggle('nav-open');
+          const isNavOpen = bodyEl.classList.contains('nav-open');
+          navToggle.setAttribute('aria-expanded', isNavOpen);
+        });
+      }
+      
+      // Close mobile nav when a link is clicked
+      if (navlinksEl) {
+        navlinksEl.addEventListener('click', (e) => {
+          if (e.target.tagName === 'A') {
+            bodyEl.classList.remove('nav-open');
+            if (navToggle) {
+              navToggle.setAttribute('aria-expanded', false);
+            }
+          }
+        });
+      }
+
+      // --- Contact Form Logic ---
+      const contactForm = document.getElementById('main-contact-form');
+      const serviceSelect = document.getElementById('service-type');
+      const contactOptions = {
+        brand: document.getElementById('contact-options-brand'),
+        logo: document.getElementById('contact-options-logo'),
+        consulting: document.getElementById('contact-options-consulting')
+      };
+      const contactFormMessage = document.getElementById('contact-form-message');
+
+      // Handle service selection change
+      if (serviceSelect) {
+        serviceSelect.addEventListener('change', () => {
+          const selectedValue = serviceSelect.value;
+          
+          Object.values(contactOptions).forEach(el => {
+            if (el) el.classList.remove('active');
+          });
+          
+          if (selectedValue && contactOptions[selectedValue]) {
+            contactOptions[selectedValue].classList.add('active');
+          }
+        });
+      }
+
+      // Handle contact form submission
+      if (contactForm && contactFormMessage) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          // This is a placeholder. In a real site, you'd send this to a service.
+          contactFormMessage.textContent = 'Thank you! Your inquiry has been sent.';
+          contactFormMessage.style.opacity = 1;
+          contactForm.reset();
+          
+          Object.values(contactOptions).forEach(el => {
+            if (el) el.classList.remove('active');
+          });
+
+          setTimeout(() => {
+            contactFormMessage.style.opacity = 0;
+            contactFormMessage.textContent = '';
+          }, 5000);
+        });
+      }
+
+      // --- Smooth Scrolling for Nav Links ---
+      const headerOffset = document.getElementById('header') ? document.getElementById('header').offsetHeight : 72;
+      
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          if (this.hash !== "") {
+            e.preventDefault();
+            const hash = this.hash;
+            const targetElement = document.querySelector(hash);
+            
+            if (targetElement) {
+              const elementPosition = targetElement.getBoundingClientRect().top;
+              const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+              });
+            }
+          }
+        });
       });
-    }, { rootMargin: "-40% 0px -50% 0px", threshold: 0.01 });
-    sections.forEach(s=>io.observe(s));
-    document.getElementById('year').textContent = new Date().getFullYear();
+
+      // --- Active Nav Link on Scroll (IntersectionObserver) ---
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.navlinks a');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            const activeLink = document.querySelector(`.navlinks a[href="#${id}"]`);
+            
+            navLinks.forEach(link => link.classList.remove('active'));
+            if (activeLink) {
+              activeLink.classList.add('active');
+            }
+          }
+        });
+      }, { 
+        rootMargin: `-${headerOffset}px 0px 0px 0px`,
+        threshold: 0.2 // Section is 20% in view
+      });
+
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+      
+      // Special case for "home" - set "Work" as active
+      const homeSection = document.getElementById('home');
+      const workLink = document.querySelector('.navlinks a[href="#work"]');
+      if (homeSection && workLink) {
+        const homeObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(link => link.classList.remove('active'));
+              workLink.classList.add('active');
+            }
+          });
+        }, {
+          rootMargin: `-${headerOffset}px 0px 0px 0px`,
+          threshold: 0.2
+        });
+        homeObserver.observe(homeSection);
+      }
+
+    });
   </script>
 </body>
 </html>
