@@ -419,9 +419,14 @@
       border: 1px solid rgba(255,255,255,.06);
       padding: 20px;
     }
+    
+    /* === THIS IS THE FIX === */
     .logo-card img {
-      width: 80%;
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
     }
+    /* === END OF FIX === */
     
     /* Consulting Info Box */
     .info-box {
